@@ -47,6 +47,13 @@ void pe_array(data_t a[PE_M][PE_K], data_t b[PE_K][PE_N], data_t c[PE_M][PE_N]){
     stream_t b_inter[PE_M+1][PE_N];
 #pragma HLS stream variable=b_inter
 
+    for(int m=0; m<PE_M; m++){
+#pragma HLS UNROLL
+        for(int n=0; n<PE_N; n++){
+            c[m][n] = 0;
+        }
+    }
+
 #pragma HLS DATAFLOW
 
     for(int m=0; m<PE_M; m++){
@@ -103,13 +110,6 @@ void test(data_t *a_addr, data_t *b_addr, data_t *c_addr){
 #pragma HLS PIPELINE
         for(int n=0; n<PE_N; n++){
             b[bk][n] = *(b_addr++);
-        }
-    }
-
-    for(int m=0; m<PE_M; m++){
-#pragma HLS UNROLL
-        for(int n=0; n<PE_N; n++){
-            c[m][n] = 0;
         }
     }
 

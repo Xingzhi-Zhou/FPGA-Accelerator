@@ -15,8 +15,8 @@
 
 using namespace hls;
 
-typedef int data_t;
-// typedef ap_fixed<DATA_WIDTH, DATA_INTEGER_BITS, AP_RND_CONV, AP_SAT> data_t;
+// typedef int data_t;
+typedef ap_fixed<DATA_WIDTH, DATA_INTEGER_BITS, AP_RND_CONV, AP_SAT> data_t;
 
 typedef stream<data_t> stream_t;
 
